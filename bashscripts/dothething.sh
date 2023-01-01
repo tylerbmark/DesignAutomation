@@ -1,1 +1,1 @@
-python main.py --field Neutronics
+python main.py
