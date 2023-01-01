@@ -1,12 +1,15 @@
 import pandas as pd
 from itertools import chain
 import os
-# import argparse
-# parser=argparse.ArgumentParser(description='Update the variables')
-# parser.add_argument('--file',type=str,required=True)
-# args=parser.parse_args()
-# filename=args.file
-df= pd.read_excel('data.xlsx')
+import argparse
+datafile='data.xlsx'
+df=pd.ExcelFile(datafile)
+sheet_names=', '.join(df.sheet_names)
+parser=argparse.ArgumentParser(description=F'--field: {sheet_names}')
+parser.add_argument('--field',type=str,required=True, )
+args=parser.parse_args()
+field=args.field
+df= pd.read_excel(datafile, sheet_name=field)
 df_dict=df.to_dict(orient='split')
 def Convert(a):
     it = iter(a)
